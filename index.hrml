@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drücke den Knopf</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 30px;
+    }
+
+    #button {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 10px solid #333;
+      background: #e60000;
+      color: white;
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 15px 0 #8b0000, 0 20px 30px #000;
+      transition: 0.1s;
+    }
+
+    #button:active {
+      transform: translateY(12px);
+      box-shadow: 0 3px 0 #8b0000;
+    }
+
+    #counter {
+      margin-top: 35px;
+      font-size: 25px;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 22px;
+      min-height: 30px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>🚨 DRÜCKE DEN KNOPF 🚨</h1>
+
+  <button id="button">DRÜCKEN!</button>
+
+  <div id="counter">Gedrückt: 0×</div>
+
+  <div id="message">Traust du dich?</div>
+
+  <script>
+    let clicks = 0;
+
+    const button = document.getElementById("button");
+    const counter = document.getElementById("counter");
+    const message = document.getElementById("message");
+
+    const messages = [
+      "😳 Warum hast du gedrückt?",
+      "🔥 Noch einmal!",
+      "😂 Du kannst nicht aufhören!",
+      "👀 Was passiert wohl beim nächsten Mal?",
+      "⚡ Der Knopf wird immer mächtiger!",
+      "🚨 ALARM!",
+      "🤯 WAS HAST DU GETAN?!",
+      "💀 Das war vielleicht keine gute Idee...",
+      "🏆 Du bist ein echter Knopf-Drücker!"
+    ];
+
+    button.addEventListener("click", function() {
+      clicks++;
+
+      counter.textContent = "Gedrückt: " + clicks + "×";
+
+      const randomMessage =
+        messages[Math.floor(Math.random() * messages.length)];
+
+      message.textContent = randomMessage;
+
+      // Nach 10 Klicks wird der Knopf größer
+      if (clicks === 10) {
+        button.style.transform = "scale(1.2)";
+        message.textContent = "🔥 10 KLICKS! Der Knopf wird mächtiger!";
+      }
+
+      // Nach 20 Klicks
+      if (clicks === 20) {
+        document.body.style.background = "#450000";
+        message.textContent = "🚨 20 KLICKS! WAS PASSIERT HIER?!";
+      }
+    });
+  </script>
+
+</body>
+</html>
